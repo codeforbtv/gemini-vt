@@ -13,7 +13,7 @@
         <!-- update the version number as needed -->
         <!-- <script defer src="/__/firebase/9.6.11/firebase-app-compat.js"></script> -->
         <!-- include only the Firebase features as you need -->
-        <script defer src="/__/firebase/9.6.11/firebase-auth-compat.js"></script>
+        <!-- <script defer src="/__/firebase/9.6.11/firebase-auth-compat.js"></script>
         <script defer src="/__/firebase/9.6.11/firebase-database-compat.js"></script>
         <script defer src="/__/firebase/9.6.11/firebase-firestore-compat.js"></script>
         <script defer src="/__/firebase/9.6.11/firebase-functions-compat.js"></script>
@@ -21,7 +21,7 @@
         <script defer src="/__/firebase/9.6.11/firebase-storage-compat.js"></script>
         <script defer src="/__/firebase/9.6.11/firebase-analytics-compat.js"></script>
         <script defer src="/__/firebase/9.6.11/firebase-remote-config-compat.js"></script>
-        <script defer src="/__/firebase/9.6.11/firebase-performance-compat.js"></script>
+        <script defer src="/__/firebase/9.6.11/firebase-performance-compat.js"></script> -->
         <!-- 
             initialize the SDK after all desired features are loaded, set useEmulator to false
             to avoid connecting the SDK to running emulators.
@@ -101,20 +101,6 @@
                 text-align: center;
                 font-size: 13px;
             }
-            
-            /* @media (max-width: 600px) {
-                
-                body,
-                #message {
-                    margin-top: 0;
-                    background: white;
-                    box-shadow: none;
-                }
-                
-                body {
-                    border-top: 16px solid #ffa100;
-                }
-            } */
             
             #map {
                 width: 100%;
@@ -245,82 +231,23 @@
                 background-color: rgba(0,0,0,0.7);
                 border-radius: 10px;
             }
+            .popupRow {
+                /* white-space: nowrap; */
+            }
+            .popupLabel {
+                display: inline-block;
+                margin-right: 10px;
+                font-weight: bold;
+                width: 100px;
+            }
+            .popupData {
+                display: inline-block;
+                font-style: italic;
+            }
         </style>
     </head>
     
     <body>
-        <!-- <div id="toolbar">
-            <div id="toolbar-logo">
-                <img src="./GU-Hor-web-logo-green-white-small.png"
-                style="height: 75px;" />
-            </div>
-            <div class="toolbar-toggles">
-                <input type="text" id="townFilter" name="townFilter" size="30" maxlength="100" />
-                <label for="townFilter">Filter Town</label><br/>
-                <input type="button" id="loadTownFilter" name="loadTownFilter" value="Zoom To Town"/>
-            </div>
-            <div class="toolbar-toggles">
-                <div class="iconControlBlock">
-                    <div class="iconArea">
-                        <img src="./TrashDrop.png" height="40px" width="40px"/>
-                    </div>
-                    <div class="controlArea">
-                        <input type="checkbox" id="trashdropsToggle" name="trashdropsToggle" value="true" />
-                        <label for="trashdropsToggle">Show Trash Drops</label><br/>
-                    </div>
-                </div>
-                <div class="iconControlBlock">
-                    <div class="iconArea">
-                        <img src="./ImpactTrash.png" height="44px" width="44px"/>
-                    </div>
-                    <div class="controlArea">
-                        <input type="checkbox" id="scaleTrashMarkers" name="scaleTrashMarkers" value="true" />
-                        <label for="scaleTrashMarkers">Hide Trash Impact Rings</label>
-                    </div>
-                </div>
-            </div>
-            <div class="toolbar-toggles">
-                <div class="iconControlBlock">
-                    <div class="iconArea">
-                        <img src="./TeamArea.png" height="40px" width="40px"/>
-                    </div>
-                    <div class="controlArea">
-                        <input type="checkbox" id="teamareasToggle" name="teamareasToggle" value="true" />
-                        <label for="teamareasToggle">Show Team Areas</label>
-                    </div>
-                </div>
-            </div>
-            <div class="toolbar-toggles">
-                <div class="iconControlBlock">
-                    <div class="iconArea">
-                        <img src="./TrashCollect.png" height="40px" width="40px"/>
-                    </div>
-                    <div class="controlArea">
-                        <input type="checkbox" id="collectionsitesToggle" name="collectionsitesToggle" value="true" />
-                        <label for="collectionsitesToggle">Show Trash Collection Sites</label>
-                    </div>
-                </div>
-            </div>
-            <div class="toolbar-toggles">
-                <div class="iconControlBlock">
-                    <div class="iconArea">
-                        <img src="./SupplySite.png" height="40px" width="40px"/>
-                    </div>
-                    <div class="controlArea">
-                        <input type="checkbox" id="supplysitesToggle" name="supplysitesToggle" value="true" />
-                        <label for="supplysitesToggle">Show Supplies Pickup Sites</label>
-                    </div>
-                </div>
-            </div>
-            <div class="toolbar-toggles">
-                <input type="checkbox" id="autoRefreshToggle" name="autoRefreshToggle" value="true" />
-                <label for="autoRefreshToggle">Auto Refresh Each Minute</label>
-            </div>
-            <div class="toolbar-toggles">
-                <input type="checkbox" id="toolbarToggle" name="toolbarToggle" value="true" />
-                <label for="toolbarToggle">Hide This Toolbar</label>
-            </div>
-        </div> -->
         <div class="c4btvlogo">
             <a href="https://www.codeforbtv.org" target="_blank">
                 <img src="./c4btv_white.png" style="height: 50px; width: 50px;"/>
@@ -332,23 +259,6 @@
             import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
             import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-analytics.js";
             
-            // TODO: Add SDKs for Firebase products that you want to use
-            // https://firebase.google.com/docs/web/setup#available-libraries
-            
-            // Your web app's Firebase configuration
-            const firebaseConfig = {
-                apiKey: "AIzaSyCOrCzO_pJ3_OVw3ScpwP2Fl6-h4wJ8IOA",
-                authDomain: "greenupvermont-de02b.firebaseapp.com",
-                databaseURL: "https://greenupvermont-de02b.firebaseio.com",
-                projectId: "greenupvermont-de02b",
-                storageBucket: "greenupvermont-de02b.appspot.com",
-                messagingSenderId: "439621369113",
-                appId: "1:439621369113:web:cf3fcd33eae9ed37d19988",
-                measurementId: "G-838B67JHF2"
-            };
-            
-            // Initialize Firebase
-            const app = initializeApp(firebaseConfig);
         </script>
         <script>
             // Parsing the URL params to set some default state
@@ -432,75 +342,8 @@
                     cb_autoRefresh.checked = true;
                     doAutoRefresh();
                 }
-                
-                // cb_trashdropsToggle.addEventListener('click', (event) => {
-                // 	//alert("Team Areas: " + cb_teamareasToggle.checked);
-                // 	drawTrashDrops = cb_trashdropsToggle.checked;
-                // 	mapURL.searchParams.set('trashDrops',drawTrashDrops);
-                // 	history.pushState({}, null, mapURL)
-                // 	renderTrashDrops();
-                // });
-                // cb_teamareasToggle.addEventListener('click', (event) => {
-                // 	drawTeamAreas = cb_teamareasToggle.checked;
-                // 	mapURL.searchParams.set('teamAreas',drawTeamAreas);
-                // 	history.pushState({}, null, mapURL)
-                // 	renderTeamAreas();
-                // });
-                // cb_collectionsitesToggle.addEventListener('click', (event) => {
-                // 	drawCollectionSites = cb_collectionsitesToggle.checked;
-                // 	mapURL.searchParams.set('collectionSites',drawCollectionSites);
-                // 	history.pushState({}, null, mapURL)
-                // 	renderCollectionSites();
-                // });
-                // cb_supplysitesToggle.addEventListener('click', (event) => {
-                // 	drawSupplySites = cb_supplysitesToggle.checked;
-                // 	mapURL.searchParams.set('supplySites',drawSupplySites);
-                // 	history.pushState({}, null, mapURL);
-                // 	renderSupplySites();
-                // });
-                // cb_scaleTrashMarkers.addEventListener('click', (event) => {
-                // 	onlyTrashMarker = cb_scaleTrashMarkers.checked;
-                // 	mapURL.searchParams.set('onlyTrashMarker',onlyTrashMarker);
-                // 	history.pushState({}, null, mapURL);
-                // 	renderTrashDrops();
-                // });
+
                 var refreshIntervalObject = {};
-                // function clearAutoRefresh() {
-                // 	window.clearInterval(refreshIntervalObject);
-                // }
-                // cb_autoRefresh.addEventListener('click', (event) => {
-                // 	autoRefresh = cb_autoRefresh.checked;
-                // 	mapURL.searchParams.set('autoRefresh',autoRefresh);
-                // 	history.pushState({}, null, mapURL);
-                // 	if (autoRefresh) {
-                // 		doAutoRefresh()
-                // 	}
-                // 	if (!autoRefresh) {
-                // 		clearAutoRefresh();
-                // 	}
-                // });
-                // cb_toolbarToggle.addEventListener('click', (event) => {
-                // 	hideToolbar = cb_toolbarToggle.checked;
-                // 	mapURL.searchParams.set('hideToolbar',hideToolbar);
-                // 	history.pushState({}, null, mapURL);
-                // 	setToolbarVisibility();
-                // });
-                // tb_townFilter.addEventListener('change', (event) => {
-                // 	town = tb_townFilter.value;
-                // 	mapURL.searchParams.set('town',town);
-                // 	history.pushState({}, null, mapURL);
-                // });
-                // tb_townFilter.addEventListener('change', (event) => {
-                // 	town = (tb_townFilter.value).toUpperCase();
-                // 	mapURL.searchParams.set('town',town);
-                // 	history.pushState({}, null, mapURL);
-                // });
-                // btn_loadTownFilter.addEventListener('click', (event) => {
-                // 	town = (tb_townFilter.value).toUpperCase();
-                // 	mapURL.searchParams.set('town',town);
-                // 	history.pushState({}, null, mapURL);
-                // 	renderTowns();
-                // });
                 
                 function setToolbarVisibility() {
                     let toolbarElement = document.querySelector("#toolbar");
@@ -509,21 +352,19 @@
                     hideToolbar ? mapElement.classList.add("map-full") : mapElement.classList.remove("map-full");
                 }
                 
-                // setToolbarVisibility();
-                
                 // Get the map initialized
                 var map = L.map('map',{tap: false}).setView([44.2601, -72.5754], 7);
                 var basemap = L.tileLayer(
-                'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
-                {
-                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-                    maxZoom: 18,
-                    minZoom: 7,
-                    id: 'mapbox/streets-v11',
-                    tileSize: 512,
-                    zoomOffset: -1,
-                    accessToken: 'pk.eyJ1IjoibmZsb3VyaXNoIiwiYSI6ImNsMjQzbno1bjFxZzUza21pdjJ4eWdjZnYifQ.5s3l2AhlQkNDea21n4N8Sg'
-                }
+                    'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
+                    {
+                        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                        maxZoom: 18,
+                        minZoom: 7,
+                        id: 'mapbox/streets-v11',
+                        tileSize: 512,
+                        zoomOffset: -1,
+                        accessToken: 'pk.eyJ1IjoibmZsb3VyaXNoIiwiYSI6ImNsMjQzbno1bjFxZzUza21pdjJ4eWdjZnYifQ.5s3l2AhlQkNDea21n4N8Sg'
+                    }
                 );
                 basemap.addTo(map);
                 // With the way Leaflet works, it is helpful to keep track of the layer infos
@@ -649,10 +490,52 @@
                                     color: 'red',
                                     fillColor: '#FF33FF',
                                     fillOpacity: '1',
-                                    radius: 10000,
+                                    radius: 200,
                                     className: 'impact-trashDrop'
                                 }
                             );
+                            newMarker.bindPopup(
+                                "<b>" + event['artist']['name'] + "</b><br/>@ <i>" + event['venue']['name'] + "</i><br/>" +
+                                "<div class='popupRow'>" +
+                                    "<div class='popupLabel'>Start Time</div><div class='popupData>" + event['start_time'] + "</div>" +
+                                "</div>" +
+                                "<div> class='popupRow'>" +
+                                    "<div class='popupLabel'>End Time</div><div class='popupData'>" + event['end_time'] + "</div>" +
+                                "</div>" +
+                                "<div class='popupRow'>" +
+                                    "<div class='popupLabel'>Genres</div><div class='popupData'>" + event['artist']['genres'] + "</div>" +
+                                "</div>" +
+                                "<div class='popupRow'>" +
+                                    "<div class='popupLabel'>Description</div><div class='popupData'>" + event['artist']['description'] + "</div>" +
+                                "</div>" +
+                                "<div class='popupRow'>" +
+                                    "<div class='popupLabel'>URL</div><div class='popupData'><a href='" + event['artist']['url'] + "' target='_blank'>Click Here</a></div>" +
+                                "</div>" +
+                                "<div class='popupRow'>" +
+                                    "<div class='popupLabel'>Venue</div><div class='popupData'>" + event['venue']['name'] + "</div>" +
+                                "</div>" +
+                                "<div class='popupRow'>" +
+                                    "<div class='popupLabel'>Address</div><div class='popupData'>" + event['venue']['address'] + "</div>" +
+                                "</div>" +
+                                "<div class='popupRow'>" +
+                                    "<div class='popupLabel'>Neighborhood</div><div class='popupData'>" + event['venue']['neighborhood'] + "</div>" +
+                                "</div>" +
+                                "<div class='popupRow'>" +
+                                    "<div class='popupLabel'>Zip Code</div><div class='popupData'>" + event['venue']['zip_code'] + "</div>" +
+                                "</div>" +
+                                "<div class='popupRow'>" +
+                                    "<div class='popupLabel'>Venue Type</div><div class='popupData'>" + event['venue']['type'] + "</div>" +
+                                "</div>" +
+                                "<div class='popupRow'>" +
+                                    "<div class='popupLabel'>Venue URL</div><div class='popupData'><a href='" + event['venue']['url'] + "' target='_blank'>Click Here</a></div>" +
+                                "</div>" +
+                                "<div class='popupRow'>" +
+                                    "<div class='popupLabel'>ADA Accessible?</div><div class='popupData'>" + event['venue']['ada'] + "</div>" +
+                                "</div>" +
+                                "<div class='popupRow'>" +
+                                    "<div class='popupLabel'>Rain Option?</div><div class='popupData'>" + event['venue']['rain_option'] + "</div>" +
+                                "</div>" 
+                            ).openPopup();
                             console.log("newMarker:", newMarker);
                             newMarker.addTo(map);
                         }
